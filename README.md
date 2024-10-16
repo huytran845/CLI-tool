@@ -5,7 +5,7 @@ Learning the ins and outs of command line tools to know how they parse arguments
 #### Setting up
 
 1.Make sure you have nodeJs installed to properly use this tool.
-2.Install the dependency, the arg library with, "npm install arg".
+2.Install the dependencies with, "npm install".
 
 #### Description of tool
 
