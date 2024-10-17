@@ -1,21 +1,25 @@
 #!/usr/bin/env node
 // The above statement is a shebang stating which interpreter is used for the script.
 import chalk from "chalk"; //Utilizes the chalk library to color console.log statements.
-
 import arg from "arg"; //Utilizes the arg library to better handle arguments.
+import getConfig from "../src/commands/config-mgr.js";
+import start from "../src/commands/start.js";
 
-try {
-  const args = arg({
-    "--start": Boolean,
-    "--build": Boolean,
-  });
+async function main() {
+  try {
+    const args = arg({
+      "--start": Boolean,
+      "--build": Boolean,
+    });
 
-  if (args["--start"]) {
-    console.log(chalk.bgGreen("Starting the app"));
+    if (args["--start"]) {
+      const config = await getConfig();
+      start(config);
+    }
+  } catch (err) {
+    console.log(chalk.yellow(err.message + "\n"));
+    helpInfo();
   }
-} catch (err) {
-  console.log(chalk.yellow(err.message + "\n"));
-  helpInfo();
 }
 
 function helpInfo() {
@@ -25,3 +29,5 @@ function helpInfo() {
     )}\tStarts the app\n${chalk.greenBright("--build")}\tBuilds the app\n`
   );
 }
+
+main();
