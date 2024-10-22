@@ -4,8 +4,8 @@ Learning the ins and outs of command line tools to know how they parse arguments
 
 #### Setting up
 
-1.Make sure you have nodeJs version 14+ installed to properly use this tool.
-2.Install the dependencies with, "npm install".
+1. Make sure you have nodeJs version 14+ installed to properly use this tool.
+2. Install the dependencies with, "npm install".
 
 #### Description of tool
 
