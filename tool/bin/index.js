@@ -4,6 +4,9 @@ import chalk from "chalk"; //Utilizes the chalk library to color console.log sta
 import arg from "arg"; //Utilizes the arg library to better handle arguments.
 import getConfig from "../src/commands/config-mgr.js";
 import start from "../src/commands/start.js";
+import createLogger from "../src/logger.js";
+
+const logger = createLogger("bin");
 
 async function main() {
   try {
@@ -12,12 +15,14 @@ async function main() {
       "--build": Boolean,
     });
 
+    logger.debug("Received args", JSON.stringify(args, null, 2));
+
     if (args["--start"]) {
       const config = await getConfig();
       start(config);
     }
   } catch (err) {
-    console.log(chalk.yellow(err.message + "\n"));
+    logger.warning(err.message + "\n");
     helpInfo();
   }
 }
